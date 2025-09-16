@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthAI - IBM Granite Powered Healthcare Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <div class="header__logo">
+                    <h1>HealthAI</h1>
+                    <span class="header__powered">Powered by IBM Granite</span>
+                </div>
+                <nav class="header__nav">
+                    <button class="btn btn--outline header__theme-toggle" id="themeToggle">
+                        🌙
+                    </button>
+                  
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav class="sidebar__nav">
+                <button class="sidebar__item sidebar__item--active" data-module="dashboard">
+                    <span class="sidebar__icon">📊</span>
+                    Dashboard
+                </button>
+                <button class="sidebar__item" data-module="chat">
+                    <span class="sidebar__icon">💬</span>
+                    Patient Chat
+                </button>
+                <button class="sidebar__item" data-module="prediction">
+                    <span class="sidebar__icon">🔍</span>
+                    Disease Prediction
+                </button>
+                <button class="sidebar__item" data-module="treatment">
+                    <span class="sidebar__icon">💊</span>
+                    Treatment Plans
+                </button>
+                <button class="sidebar__item" data-module="analytics">
+                    <span class="sidebar__icon">📈</span>
+                    Health Analytics
+                </button>
+                
+                <button class="sidebar__item" data-module="appointments">
+                    <span class="sidebar__icon">📅</span>
+                    Appointments
+                </button>
+                <button class="sidebar__item" data-module="medications">
+                    <span class="sidebar__icon">💉</span>
+                    Medications
+                </button>
+            </nav>
+            <div class="sidebar__emergency">
+                <h4>Emergency Contacts</h4>
+                <div class="emergency-contact">
+                    <strong>108</strong>
+                    <span>Emergency Services</span>
+                </div>
+                <div class="emergency-contact">
+                    <strong>112</strong>
+                    <span>Crisis Lifeline</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Dashboard Module -->
+            <div class="module module--active" id="dashboard">
+                <div class="module__header">
+                    <h2>Health Dashboard</h2>
+                    <p>Welcome to your personalized health management platform</p>
+                </div>
+                <div class="dashboard-grid">
+                    <div class="card dashboard-card">
+                        <div class="card__body">
+                            <h3>Today's Health Tip</h3>
+                            <p id="dailyTip">Loading health tip...</p>
+                        </div>
+                    </div>
+                    <div class="card dashboard-card">
+                        <div class="card__body">
+                            <h3>Quick Stats</h3>
+                            <div class="stats-grid">
+                                <div class="stat">
+                                    <span class="stat__value">3</span>
+                                    <span class="stat__label">Medications</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat__value">2</span>
+                                    <span class="stat__label">Appointments</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat__value">Normal</span>
+                                    <span class="stat__label">BP Status</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card dashboard-card card--span-2">
+                        <div class="card__body">
+                            <h3>Recent Activity</h3>
+                            <div class="activity-list">
+                                <div class="activity-item">
+                                    <span class="activity__time">Today 8:00 AM</span>
+                                    <span class="activity__text">Took morning medications</span>
+                                </div>
+                                <div class="activity-item">
+                                    <span class="activity__time">Yesterday</span>
+                                    <span class="activity__text">Completed health assessment</span>
+                                </div>
+                                <div class="activity-item">
+                                    <span class="activity__time">2 days ago</span>
+                                    <span class="activity__text">Scheduled follow-up appointment</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Patient Chat Module -->
+            <div class="module" id="chat">
+                <div class="module__header">
+                    <h2>AI Health Assistant</h2>
+                    <p>Chat with our IBM Granite-powered AI for health guidance</p>
+                </div>
+                <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="chat-message chat-message--ai">
+                            <div class="chat-message__content">
+                                <p>Hello! I'm your AI Health Assistant powered by IBM Granite technology. I'm here to help you with health-related questions and guidance. How can I assist you today?</p>
+                                <span class="chat-message__time">12:00 PM</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input-container">
+                        <div class="chat-disclaimer">
+                            <small>⚠️ This AI assistant provides general health information only and is not a substitute for professional medical advice.</small>
+                        </div>
+                        <div class="chat-input">
+                            <input type="text" id="chatInput" placeholder="Ask about symptoms, health tips, or general medical questions..." class="form-control">
+                            <button id="sendMessage" class="btn btn--primary">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disease Prediction Module -->
+            <div class="module" id="prediction">
+                <div class="module__header">
+                    <h2>Disease Prediction</h2>
+                    <p>AI-powered symptom analysis and condition prediction</p>
+                </div>
+                <div class="prediction-container">
+                    <div class="prediction-input">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Describe Your Symptoms</h3>
+                                <div class="form-group">
+                                    <label class="form-label">Symptoms Description</label>
+                                    <textarea id="symptomsText" class="form-control" rows="4" placeholder="Describe your symptoms in detail..."></textarea>
+                                </div>
+                                
+                                <h4>Common Symptoms Checklist</h4>
+                                <div class="symptoms-grid" id="symptomsChecklist">
+                                    <!-- Will be populated by JavaScript -->
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Age</label>
+                                    <input type="number" id="patientAge" class="form-control" min="1" max="120" value="35">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Gender</label>
+                                    <select id="patientGender" class="form-control">
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+
+                                <button id="analyzeSymptoms" class="btn btn--primary btn--full-width">Analyze Symptoms</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="prediction-results">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Analysis Results</h3>
+                                <div id="predictionResults" class="prediction-results-content">
+                                    <p class="text-muted">Enter symptoms and click "Analyze Symptoms" to get AI-powered predictions.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Treatment Plans Module -->
+            <div class="module" id="treatment">
+                <div class="module__header">
+                    <h2>Personalized Treatment Plans</h2>
+                    <p>Get personalized treatment recommendations</p>
+                </div>
+                <div class="treatment-container">
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Patient Information</h3>
+                            <div class="form-group">
+                                <label class="form-label">Primary Condition</label>
+                                <select id="primaryCondition" class="form-control">
+                                    <option value="">Select a condition</option>
+                                    <option value="Common Cold">Common Cold</option>
+                                    <option value="Influenza (Flu)">Influenza (Flu)</option>
+                                    <option value="Hypertension">Hypertension</option>
+                                    <option value="Type 2 Diabetes">Type 2 Diabetes</option>
+                                    <option value="Migraine">Migraine</option>
+                                    <option value="Gastroenteritis">Gastroenteritis</option>
+                                </select>
+                            </div>
+                            <button id="generateTreatment" class="btn btn--primary">Generate Treatment Plan</button>
+                        </div>
+                    </div>
+                    
+                    <div class="treatment-results" id="treatmentResults">
+                        <!-- Results will be populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Health Analytics Module -->
+            <div class="module" id="analytics">
+                <div class="module__header">
+                    <h2>Health Analytics</h2>
+                    <p>Visualize your health data and trends</p>
+                </div>
+                <div class="analytics-container">
+                    <div class="analytics-grid">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Symptom Tracking</h3>
+                                <div class="chart-container" style="position: relative; height: 300px;">
+                                    <canvas id="symptomChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Health Metrics</h3>
+                                <div class="chart-container" style="position: relative; height: 300px;">
+                                    <canvas id="healthMetricsChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Condition Distribution</h3>
+                                <div class="chart-container" style="position: relative; height: 300px;">
+                                    <canvas id="conditionChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Module -->
+            <div class="module" id="profile">
+                <div class="module__header">
+                    <h2>Health Profile</h2>
+                    <p>Manage your personal health information</p>
+                </div>
+                <div class="profile-container">
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Personal Information</h3>
+                            <div class="profile-info">
+                                <div class="info-item">
+                                    <strong>Name:</strong> John Doe
+                                </div>
+                                <div class="info-item">
+                                    <strong>Age:</strong> 35
+                                </div>
+                                <div class="info-item">
+                                    <strong>Gender:</strong> Male
+                                </div>
+                                <div class="info-item">
+                                    <strong>Blood Type:</strong> O+
+                                </div>
+                                <div class="info-item">
+                                    <strong>Allergies:</strong> Penicillin, Peanuts
+                                </div>
+                                <div class="info-item">
+                                    <strong>Chronic Conditions:</strong> Hypertension
+                                </div>
+                                <div class="info-item">
+                                    <strong>Emergency Contact:</strong> Jane Doe - 555-0123
+                                </div>
+                                <div class="info-item">
+                                    <strong>Primary Physician:</strong> Dr. Smith - Internal Medicine
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Appointments Module -->
+            <div class="module" id="appointments">
+                <div class="module__header">
+                    <h2>Appointments</h2>
+                    <p>Manage your healthcare appointments</p>
+                </div>
+                <div class="appointments-container">
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Upcoming Appointments</h3>
+                            <div class="appointments-list" id="appointmentsList">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                            <button class="btn btn--primary mt-8">Schedule New Appointment</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Medications Module -->
+            <div class="module" id="medications">
+                <div class="module__header">
+                    <h2>Medication Management</h2>
+                    <p>Track your medications and reminders</p>
+                </div>
+                <div class="medications-container">
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Current Medications</h3>
+                            <div class="medications-list" id="medicationsList">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <p>Analyzing with IBM Granite AI...</p>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
